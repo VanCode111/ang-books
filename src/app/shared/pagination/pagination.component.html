@@ -1,0 +1,10 @@
+<div class="pagination">
+  <button
+    class="pagination__btn"
+    *ngFor="let btn of buttons"
+    (click)="onClick.emit(btn)"
+    [ngClass]="{ active: btn == selected }"
+  >
+    {{ btn }}
+  </button>
+</div>

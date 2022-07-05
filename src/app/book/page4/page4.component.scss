@@ -1,0 +1,61 @@
+.page {
+  &__bottom {
+    display: flex;
+    gap: 24px;
+    align-items: flex-start;
+    margin-top: 24px;
+  }
+  font-family: "Segoe UI";
+  padding-top: 24px;
+  &__img {
+    width: 238px;
+    height: auto;
+    border-radius: 16px;
+  }
+}
+
+.container {
+  margin: 0 auto;
+  max-width: 762px;
+}
+
+.top-block {
+  display: flex;
+  justify-content: center;
+}
+
+.second-title {
+  margin: 0;
+  margin-bottom: 12px;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 24px;
+}
+
+.title {
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 32px;
+  margin: 0;
+}
+
+.top-block {
+  margin-bottom: 24px;
+}
+
+.desc {
+  margin: 0;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+
+  & + & {
+    margin-top: 12px;
+  }
+}
+
+.page {
+  &__title {
+    margin-bottom: 16px;
+  }
+}
