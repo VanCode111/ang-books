@@ -7,6 +7,10 @@ const routes: Routes = [
     path: 'book',
     loadChildren: () => import('./book/book.module').then((m) => m.BookModule),
   },
+  {
+    path: '**',
+    redirectTo: 'book',
+  },
 ];
 
 @NgModule({
