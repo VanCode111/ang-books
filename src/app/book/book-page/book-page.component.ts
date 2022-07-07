@@ -13,10 +13,11 @@ export class BookPageComponent implements OnInit {
 
   changePage(num: number): void {
     this.mode = num;
-    this.router.navigate([`book/page/${num}`]);
+    this.router.navigate([`book/${num}`]);
   }
 
   ngOnInit(): void {
-    this.mode = Number(this.route.snapshot.paramMap.get('mode'));
+    const url = this.router.url.split('/');
+    this.mode = +url[url.length - 1];
   }
 }

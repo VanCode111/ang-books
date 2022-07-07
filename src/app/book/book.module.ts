@@ -13,7 +13,15 @@ import { Page4Component } from './page4/page4.component';
 import { Page5Component } from './page5/page5.component';
 
 @NgModule({
-  declarations: [Page1Component, BookPageComponent, HeaderComponent, Page2Component, Page3Component, Page4Component, Page5Component],
+  declarations: [
+    Page1Component,
+    BookPageComponent,
+    HeaderComponent,
+    Page2Component,
+    Page3Component,
+    Page4Component,
+    Page5Component,
+  ],
   imports: [CommonModule, BookRoutingModule, SharedModule],
 })
 export class BookModule {}

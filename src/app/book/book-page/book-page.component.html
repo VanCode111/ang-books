@@ -1,11 +1,6 @@
 <app-header></app-header>
-<div class="pages" [ngSwitch]="mode">
-  <app-page2 *ngSwitchCase="2"></app-page2>
-  <app-page3 *ngSwitchCase="3"></app-page3>
-  <app-page4 *ngSwitchCase="4"></app-page4>
-  <app-page5 *ngSwitchCase="5"></app-page5>
-  <app-page1 *ngSwitchDefault></app-page1>
-</div>
+
+<router-outlet></router-outlet>
 
 <div class="pagination">
   <app-pagination

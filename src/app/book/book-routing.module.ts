@@ -9,10 +9,37 @@ import { Page4Component } from './page4/page4.component';
 import { Page5Component } from './page5/page5.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'page/1', pathMatch: 'full' },
   {
-    path: 'page/:mode',
+    path: '',
+
     component: BookPageComponent,
+    children: [
+      {
+        path: '1',
+        component: Page1Component,
+      },
+      {
+        path: '2',
+        component: Page2Component,
+      },
+      {
+        path: '3',
+        component: Page3Component,
+      },
+
+      {
+        path: '4',
+        component: Page4Component,
+      },
+      {
+        path: '5',
+        component: Page5Component,
+      },
+      {
+        path: '**',
+        redirectTo: '/',
+      },
+    ],
   },
 ];
 
