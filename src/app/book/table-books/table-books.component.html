@@ -1,0 +1,73 @@
+<mat-card>
+  <button mat-button (click)="getNewData()">
+    Сформировать новый сет данных
+  </button>
+  <mat-card-content>
+    <div class="responsive-table">
+      <mat-table
+        #table
+        [dataSource]="sortedData"
+        multiTemplateDataRows
+        matSort
+        (matSortChange)="sortData($event)"
+        matSortActive="carbs"
+        matSortDirection="asc"
+      >
+        <ng-container
+          matColumnDef="{{ column }}"
+          *ngFor="let column of columnsToDisplay1"
+        >
+          <mat-header-cell *matHeaderCellDef mat-sort-header>
+            {{ column }}
+          </mat-header-cell>
+          <mat-cell *matCellDef="let element" class="row'">
+            <span class="header-label">{{ column }}:</span>
+            {{ element[column] }}
+          </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="expandedDetail">
+          <mat-cell
+            *matCellDef="let element"
+            [attr.colspan]="columnsToDisplay1.length"
+          >
+            <div
+              class="example-element-detail"
+              [@detailExpand]="
+                element == expandedElement ? 'expanded' : 'collapsed'
+              "
+            >
+              <table>
+                <tr>
+                  <th *ngFor="let column of extendedColumns">{{ column }}</th>
+                </tr>
+
+                <tr>
+                  <td>{{ element.name }}</td>
+                  <td>{{ element.weight }}</td>
+
+                  <td>{{ element.symbol }}</td>
+                  <td>{{ element.position }}</td>
+                </tr>
+              </table>
+            </div>
+          </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="columnsToDisplay1"></mat-header-row>
+        <mat-row
+          *matRowDef="let element; columns: columnsToDisplay1"
+          class="example-element-row"
+          [class.example-expanded-row]="expandedElement === element"
+          (click)="expandedElement = element"
+        >
+        </mat-row>
+        <tr
+          mat-row
+          *matRowDef="let row; columns: ['expandedDetail']"
+          class="example-detail-row"
+        ></tr>
+      </mat-table>
+    </div>
+  </mat-card-content>
+</mat-card>

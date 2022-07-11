@@ -1,11 +1,12 @@
 import { NotFoundComponent } from './not-found/not-found.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { bookRoutes } from './book/book-routing.module';
 
 const routes: Routes = [
   {
     path: 'book',
-    loadChildren: () => import('./book/book.module').then((m) => m.BookModule),
+    children: [...bookRoutes],
   },
   {
     path: '**',
