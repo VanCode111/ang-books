@@ -71,3 +71,9 @@ tr.mat-footer-row {
   height: 250px;
   overflow: auto;
 }
+
+.collapsed {
+  height: 0px;
+  min-height: 0;
+  display: none;
+}

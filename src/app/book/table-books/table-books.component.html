@@ -33,9 +33,7 @@
           >
             <div
               class="example-element-detail"
-              [@detailExpand]="
-                element == expandedElement ? 'expanded' : 'collapsed'
-              "
+              [ngClass]="{ collapsed: element !== expandedElement }"
             >
               <table>
                 <tr>
