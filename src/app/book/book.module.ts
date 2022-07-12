@@ -20,6 +20,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSortModule } from '@angular/material/sort';
 
 import { MatButtonModule } from '@angular/material/button';
+import { InnerTableComponent } from './inner-table/inner-table.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { MatButtonModule } from '@angular/material/button';
     Page4Component,
     Page5Component,
     TableBooksComponent,
+    InnerTableComponent,
   ],
   imports: [
     CommonModule,

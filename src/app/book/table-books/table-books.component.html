@@ -6,11 +6,10 @@
 
     <table
       mat-table
-      [dataSource]="sortedData"
+      [dataSource]="dataSource"
       multiTemplateDataRows
       class="mat-elevation-z8"
       matSort
-      (matSortChange)="sortData($event)"
       matSortActive="carbs"
       matSortDirection="asc"
     >
@@ -48,7 +47,6 @@
         </td>
       </ng-container>
 
-      <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
       <ng-container matColumnDef="expandedDetail">
         <td
           mat-cell
@@ -62,53 +60,9 @@
             "
           >
             <mat-card class="extend-table"
-              ><mat-table
-                [dataSource]="dataSource2"
-                #table
-                class="extend-table"
-              >
-                <!-- Position Column -->
-                <ng-container matColumnDef="position">
-                  <mat-header-cell *matHeaderCellDef>
-                    Position
-                  </mat-header-cell>
-                  <mat-cell *matCellDef="let element">
-                    {{ element.position }}
-                  </mat-cell>
-                </ng-container>
-
-                <!-- Name Column -->
-                <ng-container matColumnDef="name">
-                  <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
-                  <mat-cell *matCellDef="let element">
-                    {{ element.name }}
-                  </mat-cell>
-                </ng-container>
-
-                <!-- Weight Column -->
-                <ng-container matColumnDef="weight">
-                  <mat-header-cell *matHeaderCellDef> Weight </mat-header-cell>
-                  <mat-cell *matCellDef="let element">
-                    {{ element.weight }}
-                  </mat-cell>
-                </ng-container>
-
-                <!-- displayedInCell Column -->
-                <ng-container matColumnDef="displayedInCell">
-                  <mat-header-cell *matHeaderCellDef>
-                    displayedInCell
-                  </mat-header-cell>
-                  <mat-cell *matCellDef="let element">
-                    {{ element.displayedInCell }}
-                  </mat-cell>
-                </ng-container>
-
-                <mat-header-row
-                  *matHeaderRowDef="extendedColumns"
-                ></mat-header-row>
-                <mat-row
-                  *matRowDef="let row; columns: extendedColumns"
-                ></mat-row> </mat-table
+              ><app-inner-table
+                [extendedData]="element.extendedData"
+              ></app-inner-table
             ></mat-card>
           </div>
         </td>

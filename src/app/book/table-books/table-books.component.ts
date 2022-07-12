@@ -1,5 +1,7 @@
-import { Sort } from '@angular/material/sort';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
+import { MatTableDataSource } from '@angular/material/table';
+
+import { MatSort, Sort } from '@angular/material/sort';
 import {
   animate,
   state,
@@ -23,44 +25,26 @@ import {
     ]),
   ],
 })
-export class TableBooksComponent implements OnInit {
-  dataSource = ELEMENT_DATA;
-  dataSource2 = MY_DATA;
-  columnsToDisplay = ['name', 'weight', 'symbol', 'position'];
-  extendedColumns = ['name', 'weight', 'position', 'displayedInCell'];
-  expandedElement: PeriodicElement | null = null;
-
-  sortedData;
+export class TableBooksComponent implements OnInit, AfterViewInit {
+  dataSource;
+  columnsToDisplay: string[];
+  expandedElement: PeriodicElement | null;
 
   constructor() {
-    this.sortedData = this.dataSource.slice();
+    this.dataSource = new MatTableDataSource(
+      ELEMENT_DATA.map((item) => ({ ...item, extendedData: MY_DATA }))
+    );
+    this.columnsToDisplay = ['name', 'weight', 'symbol', 'position'];
+    this.expandedElement = null;
+  }
+
+  @ViewChild(MatSort) sort: MatSort = new MatSort();
+
+  ngAfterViewInit() {
+    this.dataSource.sort = this.sort;
   }
 
   ngOnInit(): void {}
-
-  sortData(sort: Sort) {
-    const data = this.dataSource.slice();
-    if (!sort.active || sort.direction === '') {
-      this.sortedData = data;
-      return;
-    }
-
-    this.sortedData = data.sort((a, b) => {
-      const isAsc = sort.direction === 'asc';
-      switch (sort.active) {
-        case 'name':
-          return compare(a.name, b.name, isAsc);
-        case 'position':
-          return compare(a.position, b.position, isAsc);
-        case 'weight':
-          return compare(a.weight, b.weight, isAsc);
-        case 'symbol':
-          return compare(a.symbol, b.symbol, isAsc);
-        default:
-          return 0;
-      }
-    });
-  }
 
   getNewData(): void {
     const newData = [];
@@ -71,16 +55,12 @@ export class TableBooksComponent implements OnInit {
         name: (Math.random() + 1).toString(36).substring(7),
         weight: Math.random() * 5,
         symbol: (Math.random() + 1).toString(36).substring(1),
+        extendedData: MY_DATA,
       });
     }
 
-    this.dataSource = newData;
-    this.sortedData = newData;
+    this.dataSource = new MatTableDataSource(newData);
   }
-}
-
-function compare(a: number | string, b: number | string, isAsc: boolean) {
-  return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
 }
 
 export interface PeriodicElement {

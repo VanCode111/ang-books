@@ -1,0 +1,45 @@
+<mat-table
+  matSort
+  matSortActive="carbs"
+  matSortDirection="asc"
+  [dataSource]="dataSource"
+  #table
+  class="extend-table"
+>
+  <ng-container matColumnDef="position">
+    <mat-header-cell mat-sort-header *matHeaderCellDef>
+      Position
+    </mat-header-cell>
+    <mat-cell *matCellDef="let element">
+      {{ element.position }}
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="name">
+    <mat-header-cell mat-sort-header *matHeaderCellDef> Name </mat-header-cell>
+    <mat-cell *matCellDef="let element">
+      {{ element.name }}
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="weight">
+    <mat-header-cell mat-sort-header *matHeaderCellDef>
+      Weight
+    </mat-header-cell>
+    <mat-cell *matCellDef="let element">
+      {{ element.weight }}
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="displayedInCell">
+    <mat-header-cell mat-sort-header *matHeaderCellDef>
+      displayedInCell
+    </mat-header-cell>
+    <mat-cell *matCellDef="let element">
+      {{ element.displayedInCell }}
+    </mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="extendedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: extendedColumns"></mat-row>
+</mat-table>

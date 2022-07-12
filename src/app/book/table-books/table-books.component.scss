@@ -51,10 +51,6 @@ tr.example-element-row:not(.example-expanded-row):active {
   opacity: 0.5;
 }
 
-.mat-row {
-  cursor: pointer;
-}
-
 .fixed-height {
   height: 270px;
   overflow: auto;
@@ -71,6 +67,10 @@ tr.mat-footer-row {
 .fixed-header {
   height: 250px;
   overflow: auto;
+}
+
+.example-element-row {
+  cursor: pointer;
 }
 
 .collapsed {
@@ -103,8 +103,8 @@ tr.mat-footer-row {
 }
 
 .container {
-  max-width: 1200px;
   margin: 0 auto;
+  max-width: 762px;
 }
 
 .table-book {
