@@ -1,0 +1,30 @@
+<div class="auth">
+  <div class="auth__card">
+    <img class="auth__list" src="../../../assets/img/list.png" alt="list" />
+    <div class="auth__form">
+      <h5 class="auth__title" *ngIf="!isLogin; else register_title">
+        Регистрация
+      </h5>
+      <ng-template #register_title
+        ><h5 class="auth__title">Вход</h5>
+      </ng-template>
+      <p class="auth__text-link" *ngIf="!isLogin; else register_link">
+        Already have an Account ?
+        <a routerLink="/auth/signin" class="auth__link">Sign in</a>
+      </p>
+      <ng-template #register_link
+        ><p class="auth__text-link">
+          Don't have an Account ?
+          <a routerLink="/auth/signup" class="auth__link">Sign up</a>
+        </p>
+      </ng-template>
+      <app-signin
+        [loginForm]="loginForm"
+        *ngIf="isLogin; else register"
+      ></app-signin>
+      <ng-template #register
+        ><app-signup [registerForm]="registerForm"></app-signup>
+      </ng-template>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,29 @@
+<form class="form" [formGroup]="loginForm">
+  <div class="auth__input">
+    <div class="text-field">
+      <input
+        type="text"
+        formControlName="email"
+        class="text-field__input"
+        placeholder=""
+        required
+      />
+      <label class="text-field__label">Email</label>
+    </div>
+  </div>
+  <div class="auth__input">
+    <div class="text-field">
+      <input
+        formControlName="password"
+        type="text"
+        class="text-field__input"
+        placeholder=""
+        required
+      />
+      <label class="text-field__label">Password</label>
+    </div>
+  </div>
+  <div class="auth__button">
+    <button [disabled]="loginForm.invalid" class="button">Войти</button>
+  </div>
+</form>

@@ -1,0 +1,72 @@
+.auth {
+  height: 100vh;
+  background: linear-gradient(0deg, #4cab72, #4cab72), #ffffff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  &__card {
+    position: relative;
+    max-width: 1512px;
+    box-sizing: border-box;
+    width: 100%;
+
+    padding: 68px;
+
+    overflow: hidden;
+    border-radius: 70px;
+    background: url("../../../assets/img/auth-back.png") no-repeat center;
+    background-size: cover;
+  }
+  &__form {
+    padding: 68px;
+    background: linear-gradient(
+      145.36deg,
+      rgba(244, 244, 244, 0.4) -4.23%,
+      rgba(244, 244, 244, 0.2) 102.58%
+    );
+    backdrop-filter: blur(20px);
+    box-sizing: border-box;
+    border-radius: 50px;
+    width: 850px;
+  }
+  &__title {
+    font-family: "Poppins", sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 52px;
+    line-height: 78px;
+    color: white;
+    text-align: center;
+    margin: 0 0 10px 0;
+  }
+
+  &__text-link {
+    font-family: "Poppins";
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    color: #ffffff;
+    text-align: center;
+    margin: 0 0 74px 0;
+  }
+  &__link {
+    color: rgba(98, 255, 180, 1);
+  }
+  &__input + &__input {
+    margin-top: 50px;
+  }
+  &__button {
+    width: 290px;
+
+    margin: 50px auto 0 auto;
+  }
+  &__list {
+    position: absolute;
+    z-index: 2;
+    right: 0px;
+    bottom: 0;
+  }
+  padding: 0 10px;
+}
