@@ -25,6 +25,7 @@ tr.example-element-row:not(.example-expanded-row):active {
 .example-element-detail {
   overflow: hidden;
   display: flex;
+  width: 100%;
 }
 
 .example-element-diagram {
@@ -76,4 +77,36 @@ tr.mat-footer-row {
   height: 0px;
   min-height: 0;
   display: none;
+}
+
+.extend-table {
+  width: 100%;
+  display: block;
+}
+
+.example-detail-row {
+  width: 100%;
+  height: auto;
+  padding: 0;
+}
+.example-element-detail {
+  width: 100%;
+}
+
+.cell {
+  width: 100%;
+}
+
+.hidden-row {
+  min-height: 0;
+  border: none;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.table-book {
+  padding: 30px 15px;
 }

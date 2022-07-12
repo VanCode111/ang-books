@@ -1,5 +1,5 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatTableDataSource } from '@angular/material/table';
+import { Sort } from '@angular/material/sort';
+import { Component, OnInit } from '@angular/core';
 import {
   animate,
   state,
@@ -8,9 +8,96 @@ import {
   trigger,
 } from '@angular/animations';
 
-import { Sort } from '@angular/material/sort';
+@Component({
+  selector: 'app-table-books',
+  templateUrl: './table-books.component.html',
+  styleUrls: ['./table-books.component.scss'],
+  animations: [
+    trigger('detailExpand', [
+      state('collapsed', style({ height: '0px', minHeight: '0' })),
+      state('expanded', style({ height: '*' })),
+      transition(
+        'expanded <=> collapsed',
+        animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')
+      ),
+    ]),
+  ],
+})
+export class TableBooksComponent implements OnInit {
+  dataSource = ELEMENT_DATA;
+  dataSource2 = MY_DATA;
+  columnsToDisplay = ['name', 'weight', 'symbol', 'position'];
+  extendedColumns = ['name', 'weight', 'position', 'displayedInCell'];
+  expandedElement: PeriodicElement | null = null;
 
-const ELEMENT_DATA = [
+  sortedData;
+
+  constructor() {
+    this.sortedData = this.dataSource.slice();
+  }
+
+  ngOnInit(): void {}
+
+  sortData(sort: Sort) {
+    const data = this.dataSource.slice();
+    if (!sort.active || sort.direction === '') {
+      this.sortedData = data;
+      return;
+    }
+
+    this.sortedData = data.sort((a, b) => {
+      const isAsc = sort.direction === 'asc';
+      switch (sort.active) {
+        case 'name':
+          return compare(a.name, b.name, isAsc);
+        case 'position':
+          return compare(a.position, b.position, isAsc);
+        case 'weight':
+          return compare(a.weight, b.weight, isAsc);
+        case 'symbol':
+          return compare(a.symbol, b.symbol, isAsc);
+        default:
+          return 0;
+      }
+    });
+  }
+
+  getNewData(): void {
+    const newData = [];
+
+    for (let i = 0; i < Math.floor(Math.random() * 100) + 2; i++) {
+      newData.push({
+        position: newData.length,
+        name: (Math.random() + 1).toString(36).substring(7),
+        weight: Math.random() * 5,
+        symbol: (Math.random() + 1).toString(36).substring(1),
+      });
+    }
+
+    this.dataSource = newData;
+    this.sortedData = newData;
+  }
+}
+
+function compare(a: number | string, b: number | string, isAsc: boolean) {
+  return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
+}
+
+export interface PeriodicElement {
+  name: string;
+  position: number;
+  weight: number;
+  symbol: string;
+}
+
+export interface extendedElement {
+  name: string;
+  position: number;
+  weight: number;
+  displayedInCell: string;
+}
+
+const ELEMENT_DATA: PeriodicElement[] = [
   { position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H' },
   { position: 2, name: 'Helium', weight: 4.0026, symbol: 'He' },
   { position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li' },
@@ -23,7 +110,7 @@ const ELEMENT_DATA = [
   { position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne' },
 ];
 
-const MY_DATA = [
+const MY_DATA: extendedElement[] = [
   {
     position: 24,
     name: 'ElementName',
@@ -85,85 +172,3 @@ const MY_DATA = [
     displayedInCell: 'Is not gas',
   },
 ];
-
-@Component({
-  selector: 'app-table-books',
-  templateUrl: './table-books.component.html',
-  styleUrls: ['./table-books.component.scss'],
-  animations: [
-    trigger('detailExpand', [
-      state(
-        'collapsed',
-        style({ height: '0px', minHeight: '0', display: 'none' })
-      ),
-      state('expanded', style({ height: '*' })),
-      transition(
-        'expanded <=> collapsed',
-        animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')
-      ),
-    ]),
-  ],
-})
-export class TableBooksComponent implements OnInit {
-  dataSource = ELEMENT_DATA;
-
-  dataSource2 = { ...ELEMENT_DATA };
-
-  extendedColumns = ['displayedInCell', 'name', 'weight', 'position'];
-
-  columnsToDisplay1 = ['name', 'weight', 'symbol', 'position'];
-
-  expandedElement = Object.create(null);
-
-  sortedData;
-
-  constructor() {
-    this.sortedData = this.dataSource.slice();
-  }
-
-  ngOnInit(): void {}
-
-  sortData(sort: Sort) {
-    const data = this.dataSource.slice();
-    if (!sort.active || sort.direction === '') {
-      this.sortedData = data;
-      return;
-    }
-
-    this.sortedData = data.sort((a, b) => {
-      const isAsc = sort.direction === 'asc';
-      switch (sort.active) {
-        case 'name':
-          return compare(a.name, b.name, isAsc);
-        case 'position':
-          return compare(a.position, b.position, isAsc);
-        case 'weight':
-          return compare(a.weight, b.weight, isAsc);
-        case 'symbol':
-          return compare(a.symbol, b.symbol, isAsc);
-        default:
-          return 0;
-      }
-    });
-  }
-
-  getNewData(): void {
-    const newData = [];
-
-    for (let i = 0; i < Math.floor(Math.random() * 100) + 2; i++) {
-      newData.push({
-        position: newData.length,
-        name: (Math.random() + 1).toString(36).substring(7),
-        weight: Math.random() * 5,
-        symbol: (Math.random() + 1).toString(36).substring(1),
-      });
-    }
-
-    this.dataSource = newData;
-    this.sortedData = newData;
-  }
-}
-
-function compare(a: number | string, b: number | string, isAsc: boolean) {
-  return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
-}
