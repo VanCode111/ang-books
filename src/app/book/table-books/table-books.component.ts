@@ -41,6 +41,7 @@ export class TableBooksComponent implements OnInit, AfterViewInit {
   @ViewChild(MatSort) sort: MatSort = new MatSort();
 
   ngAfterViewInit() {
+    console.log(1111);
     this.dataSource.sort = this.sort;
   }
 

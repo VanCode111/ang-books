@@ -10,6 +10,14 @@
       />
       <label class="text-field__label">Email</label>
     </div>
+    <div *ngIf="email?.hasError && email?.touched" class="error">
+      <p class="error__message" *ngIf="email?.errors?.['required']">
+        Необходимое поле
+      </p>
+      <p class="error__message" *ngIf="email?.errors?.['email']">
+        Некорректный email
+      </p>
+    </div>
   </div>
   <div class="auth__input">
     <div class="text-field">
@@ -22,8 +30,15 @@
       />
       <label class="text-field__label">Password</label>
     </div>
+    <div *ngIf="password?.hasError && password?.touched" class="error">
+      <p class="error__message" *ngIf="password?.errors?.['required']">
+        Необходимое поле
+      </p>
+    </div>
   </div>
   <div class="auth__button">
-    <button [disabled]="loginForm.invalid" class="button">Войти</button>
+    <button (click)="submit()" [disabled]="loginForm.invalid" class="button">
+      Войти
+    </button>
   </div>
 </form>

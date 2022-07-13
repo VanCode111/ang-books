@@ -10,6 +10,14 @@
       />
       <label class="text-field__label">Name</label>
     </div>
+    <div *ngIf="name?.hasError && name?.touched" class="error">
+      <p class="error__message" *ngIf="name?.errors?.['required']">
+        Необходимое поле
+      </p>
+      <p class="error__message" *ngIf="name?.errors?.['minlength']">
+        Минимальная длина 3 символа
+      </p>
+    </div>
   </div>
   <div class="auth__input">
     <div class="text-field">
@@ -22,21 +30,37 @@
       />
       <label class="text-field__label">Email</label>
     </div>
+    <div *ngIf="email?.hasError && email?.touched" class="error">
+      <p class="error__message" *ngIf="email?.errors?.['required']">
+        Необходимое поле
+      </p>
+      <p class="error__message" *ngIf="email?.errors?.['email']">
+        Некорректный email
+      </p>
+    </div>
   </div>
   <div class="auth__input">
     <div class="text-field">
       <input
         formControlName="password"
-        type="text"
+        type="password"
         class="text-field__input"
         placeholder=""
         required
       />
       <label class="text-field__label">Password</label>
     </div>
+    <div *ngIf="password?.hasError && password?.touched" class="error">
+      <p class="error__message" *ngIf="password?.errors?.['required']">
+        Необходимое поле
+      </p>
+      <p class="error__message" *ngIf="password?.errors?.['minlength']">
+        Минимальная длина 8 символов
+      </p>
+    </div>
   </div>
   <div class="auth__button">
-    <button [disabled]="registerForm.invalid" class="button">
+    <button (click)="submit()" [disabled]="registerForm.invalid" class="button">
       Зарегистрироваться
     </button>
   </div>

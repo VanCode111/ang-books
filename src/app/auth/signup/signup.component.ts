@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 
 @Component({
@@ -8,7 +8,25 @@ import { FormGroup } from '@angular/forms';
 })
 export class SignupComponent implements OnInit {
   @Input() registerForm!: FormGroup;
+  @Output() signup = new EventEmitter<MouseEvent>();
   constructor() {}
 
   ngOnInit(): void {}
+
+  get email() {
+    return this.registerForm.get('email');
+  }
+
+  get password() {
+    return this.registerForm.get('password');
+  }
+
+  get name() {
+    return this.registerForm.get('name');
+  }
+
+  submit(): void {
+    console.log('asg');
+    this.signup.emit();
+  }
 }

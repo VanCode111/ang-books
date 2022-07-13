@@ -19,11 +19,15 @@
         </p>
       </ng-template>
       <app-signin
-        [loginForm]="loginForm"
+        [loginForm]="parentForm"
+        (signin)="signIn()"
         *ngIf="isLogin; else register"
       ></app-signin>
       <ng-template #register
-        ><app-signup [registerForm]="registerForm"></app-signup>
+        ><app-signup
+          (signup)="signUp()"
+          [registerForm]="parentForm"
+        ></app-signup>
       </ng-template>
     </div>
   </div>
