@@ -53,6 +53,7 @@ export class ChartComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    document.title = 'Charts';
     this.assembly
       .getAssembly()
       .subscribe(({ data }: { data: IAssembly[] }) =>
