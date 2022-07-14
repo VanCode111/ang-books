@@ -1,0 +1,25 @@
+.chart {
+  &__wrapper {
+    width: 100%;
+    display: flex;
+  }
+  &__title {
+    font-weight: 500;
+    font-size: 20px;
+  }
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.first-canvas {
+  flex: 2;
+  height: 200px;
+}
+
+.second-canvas {
+  flex: 1;
+  width: auto;
+}

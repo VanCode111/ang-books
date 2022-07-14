@@ -1,3 +1,4 @@
+import { ChartComponent } from './chart/chart.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
@@ -7,6 +8,10 @@ const routes: Routes = [
   {
     path: 'book',
     children: [...bookRoutes],
+  },
+  {
+    path: 'chart',
+    component: ChartComponent,
   },
   {
     path: 'auth',
