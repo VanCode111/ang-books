@@ -3,26 +3,11 @@
     <h3 class="chart__title">Коледино</h3>
     <div class="chart__wrapper">
       <div class="first-canvas">
-        <canvas
-          baseChart
-          width="200"
-          height="100"
-          [data]="lineChartData"
-          [options]="lineChartOptions"
-          [type]="lineChartType"
-        ></canvas>
+        <canvas #line_chart width="200" height="100"></canvas>
       </div>
 
       <div class="second-canvas">
-        <canvas
-          baseChart
-          class="second-canvas"
-          [data]="pieChartData"
-          [type]="pieChartType"
-          [options]="pieChartOptions"
-          width="100"
-          height="100"
-        >
+        <canvas #pie_chart class="second-canvas" width="100" height="100">
         </canvas>
       </div>
     </div>

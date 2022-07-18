@@ -12,7 +12,7 @@ const ASSEMBLY_API =
 export class AssemblyService {
   constructor(private http: HttpClient) {}
 
-  getAssembly(): Observable<any> {
-    return this.http.get(ASSEMBLY_API);
+  getAssembly(): Observable<{ data: IAssembly[] }> {
+    return this.http.get<{ data: IAssembly[] }>(ASSEMBLY_API);
   }
 }

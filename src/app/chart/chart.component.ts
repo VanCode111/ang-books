@@ -1,16 +1,19 @@
 import { AssemblyService } from './../assembly.service';
 
+import { registerables } from 'chart.js';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import {
   Chart,
   ChartConfiguration,
+  ChartData,
   ChartDataset,
   ChartEvent,
+  ChartOptions,
   ChartType,
   DatasetChartOptions,
+  Plugin,
 } from 'chart.js';
-import { BaseChartDirective } from 'ng2-charts';
 import { IAssembly } from '../assembly';
 
 @Component({
@@ -19,37 +22,11 @@ import { IAssembly } from '../assembly';
   styleUrls: ['./chart.component.scss'],
 })
 export class ChartComponent implements OnInit {
-  lineChartData!: ChartConfiguration['data'];
-  pieChartData!: ChartConfiguration['data'];
+  @ViewChild('line_chart') lineChartRef!: ElementRef;
+  @ViewChild('pie_chart') pieChartRef!: ElementRef;
 
-  lineChartOptions: ChartConfiguration['options'] = {
-    elements: {
-      line: {
-        tension: 0.5,
-      },
-    },
-    scales: {
-      x: {},
-      'y-axis-0': {
-        position: 'left',
-      },
-    },
-  };
-
-  pieChartOptions: ChartConfiguration['options'] = {
-    plugins: {
-      datalabels: {
-        display: false,
-      },
-    },
-  };
-
-  lineChartType: ChartType = 'line';
-  pieChartType: ChartType = 'pie';
-
-  @ViewChild(BaseChartDirective) chart?: BaseChartDirective;
   constructor(private assembly: AssemblyService) {
-    Chart.register(ChartDataLabels);
+    Chart.register(ChartDataLabels, ...registerables);
   }
 
   ngOnInit(): void {
@@ -77,7 +54,7 @@ export class ChartComponent implements OnInit {
     };
   }
 
-  generateCharts(assembly: IAssembly[]) {
+  generateCharts(assembly: IAssembly[]): void {
     const labels: string[] = [];
     const amountDatasets = 4;
     const datasets: ChartDataset[] = [];
@@ -98,9 +75,9 @@ export class ChartComponent implements OnInit {
       datasets[4].data.push(item.qty_shk_cat4);
     });
 
-    this.lineChartData = { labels, datasets };
+    const lineChartData = { labels, datasets };
 
-    this.pieChartData = {
+    const pieChartData = {
       labels: datasets.map((item) => item.label).slice(1),
       datasets: [
         {
@@ -117,5 +94,41 @@ export class ChartComponent implements OnInit {
         },
       ],
     };
+
+    const lineChartOptions: ChartConfiguration['options'] = {
+      elements: {
+        line: {
+          tension: 0.5,
+        },
+      },
+      scales: {
+        x: {},
+        'y-axis-0': {
+          position: 'left',
+        },
+      },
+    };
+
+    const pieChartOptions: ChartConfiguration['options'] = {
+      plugins: {
+        datalabels: {
+          display: false,
+        },
+      },
+    };
+
+    const lineChartEl = this.lineChartRef.nativeElement;
+    const pieChartEl = this.pieChartRef.nativeElement;
+
+    new Chart(lineChartEl, {
+      type: 'line',
+      data: lineChartData,
+      options: lineChartOptions,
+    });
+    new Chart(pieChartEl, {
+      type: 'pie',
+      data: pieChartData,
+      options: pieChartOptions,
+    });
   }
 }

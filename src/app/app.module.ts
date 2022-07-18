@@ -3,7 +3,6 @@ import { ButtonComponent } from './button/button.component';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { NgChartsModule } from 'ng2-charts';
 import { BookModule } from './book/book.module';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -27,7 +26,6 @@ import { ChartComponent } from './chart/chart.component';
     AppRoutingModule,
     ReactiveFormsModule,
     FormsModule,
-    NgChartsModule,
     HttpClientModule,
     BrowserAnimationsModule,
     BookModule,
