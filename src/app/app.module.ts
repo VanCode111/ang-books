@@ -1,3 +1,4 @@
+import { AuthService } from './auth/auth.service';
 import { AuthModule } from './auth/auth.module';
 import { ButtonComponent } from './button/button.component';
 import { NgModule } from '@angular/core';
@@ -13,6 +14,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ChartComponent } from './chart/chart.component';
+import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
+import { environment } from '../environments/environment';
+import { provideAuth, getAuth } from '@angular/fire/auth';
 
 @NgModule({
   declarations: [
@@ -29,6 +33,9 @@ import { ChartComponent } from './chart/chart.component';
     HttpClientModule,
     BrowserAnimationsModule,
     BookModule,
+    AuthModule,
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideAuth(() => getAuth()),
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -1,12 +1,18 @@
 .header {
   height: 60px;
   border-bottom: 1px solid #d8d8d8;
+  &__wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+  }
 }
 
 .container {
   margin: 0 auto;
   max-width: 762px;
-  display: flex;
+
   align-items: center;
   height: 100%;
 }

@@ -60,8 +60,11 @@
     </div>
   </div>
   <div class="auth__button">
-    <button (click)="submit()" [disabled]="registerForm.invalid" class="button">
-      Зарегистрироваться
-    </button>
+    <app-button
+      (click)="submit()"
+      [disabled]="registerForm.invalid"
+      [loading]="loading"
+      >Войти</app-button
+    >
   </div>
 </form>

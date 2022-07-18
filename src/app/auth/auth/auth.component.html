@@ -12,6 +12,7 @@
         Already have an Account ?
         <a routerLink="/auth/signin" class="auth__link">Sign in</a>
       </p>
+      <p class="error-general" *ngIf="error">{{ error }}</p>
       <ng-template #register_link
         ><p class="auth__text-link">
           Don't have an Account ?
@@ -20,12 +21,14 @@
       </ng-template>
       <app-signin
         [loginForm]="parentForm"
+        [loading]="loading"
         (signin)="signIn()"
         *ngIf="isLogin; else register"
       ></app-signin>
       <ng-template #register
         ><app-signup
           (signup)="signUp()"
+          [loading]="loading"
           [registerForm]="parentForm"
         ></app-signup>
       </ng-template>

@@ -8,6 +8,7 @@ import { FormGroup } from '@angular/forms';
 })
 export class SigninComponent implements OnInit {
   @Input() loginForm!: FormGroup;
+  @Input() loading!: boolean;
   @Output() signin = new EventEmitter<MouseEvent>();
   constructor() {}
 

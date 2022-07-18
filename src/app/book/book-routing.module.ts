@@ -41,6 +41,11 @@ export const bookRoutes: Routes = [
         component: TableBooksComponent,
       },
       {
+        path: '',
+        pathMatch: 'full',
+        redirectTo: '1',
+      },
+      {
         path: '**',
         redirectTo: '/',
       },
