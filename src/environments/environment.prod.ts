@@ -1,12 +1,13 @@
 export const environment = {
   firebase: {
-    projectId: 'wh-school-e7fd8',
-    appId: '1:694716582365:web:e6042494e43bc57dcace34',
-    storageBucket: 'wh-school-e7fd8.appspot.com',
-    apiKey: 'AIzaSyAeD7bSDnD1cySd54MNXsQR4Ir38TJE9vU',
-    authDomain: 'wh-school-e7fd8.firebaseapp.com',
-    messagingSenderId: '694716582365',
-    measurementId: 'G-TP558R2H0B',
+    apiKey: 'AIzaSyAdqfFKqoGt-WAwRAqxaeIz60o_-tmVu1Q',
+    authDomain: 'fir-auth-93a4f.firebaseapp.com',
+    databaseURL:
+      'https://fir-auth-93a4f-default-rtdb.europe-west1.firebasedatabase.app',
+    projectId: 'fir-auth-93a4f',
+    storageBucket: 'fir-auth-93a4f.appspot.com',
+    messagingSenderId: '581614269949',
+    appId: '1:581614269949:web:18e34ca6e21f1b4da6d594',
   },
-  production: true
+  production: true,
 };
