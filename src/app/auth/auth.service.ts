@@ -35,6 +35,7 @@ export class AuthService {
     email: string;
     password: string;
   }): Observable<UserCredential> {
+    console.log('aaa');
     return from(signInWithEmailAndPassword(this.auth, email, password));
   }
 

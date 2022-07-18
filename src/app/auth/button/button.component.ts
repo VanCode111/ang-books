@@ -8,13 +8,14 @@ import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 export class ButtonComponent implements OnInit {
   @Input() loading!: boolean;
   @Input() disabled!: boolean;
-  @Output() click = new EventEmitter<MouseEvent>();
+  @Output() clickEmit = new EventEmitter<MouseEvent>();
 
   constructor() {}
 
   ngOnInit(): void {}
 
   onClick(): void {
-    this.click.emit();
+    console.log('click');
+    this.clickEmit.emit();
   }
 }

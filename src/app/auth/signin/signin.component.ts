@@ -25,6 +25,7 @@ export class SigninComponent implements OnInit {
   }
 
   submit(): void {
+    console.log('sub');
     this.signin.emit();
   }
 }

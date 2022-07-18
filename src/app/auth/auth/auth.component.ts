@@ -43,7 +43,7 @@ export class AuthComponent implements OnInit, OnDestroy {
 
   signUp(): void {
     this.loading = true;
-    const formData = this.parentForm.getRawValue();
+    const formData = { ...this.parentForm.getRawValue() };
     const subscription = this.authService
       .signUp(formData)
       .pipe(
@@ -62,6 +62,7 @@ export class AuthComponent implements OnInit, OnDestroy {
           this.router.navigate(['book']);
         },
         error: (err: FirebaseError) => {
+          console.log(err);
           this.error = err.message;
         },
       });
@@ -76,15 +77,19 @@ export class AuthComponent implements OnInit, OnDestroy {
       .pipe(
         finalize(() => {
           subscription.unsubscribe();
+          console.log(111);
           this.loading = false;
         })
       )
       .subscribe({
         next: (data) => {
           this.router.navigate(['book']);
+          subscription.unsubscribe();
         },
         error: (err: FirebaseError) => {
+          console.log(err);
           this.error = err.message;
+          subscription.unsubscribe();
         },
       });
     this.parentForm.patchValue({});

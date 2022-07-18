@@ -61,7 +61,7 @@
   </div>
   <div class="auth__button">
     <app-button
-      (click)="submit()"
+      (clickEmit)="submit()"
       [disabled]="registerForm.invalid"
       [loading]="loading"
       >Войти</app-button
