@@ -4,7 +4,10 @@ import {
   signInWithEmailAndPassword,
   authState,
   createUserWithEmailAndPassword,
+  signInWithPopup,
   UserCredential,
+  GoogleAuthProvider,
+  User,
 } from '@angular/fire/auth';
 import { concatMap, from, Observable, of, switchMap } from 'rxjs';
 
@@ -37,6 +40,11 @@ export class AuthService {
   }): Observable<UserCredential> {
     console.log('aaa');
     return from(signInWithEmailAndPassword(this.auth, email, password));
+  }
+
+  signInViaGoogle(): Observable<UserCredential> {
+    const provider = new GoogleAuthProvider();
+    return from(signInWithPopup(this.auth, provider));
   }
 
   logout(): Observable<any> {

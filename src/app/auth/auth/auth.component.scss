@@ -5,6 +5,9 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  &__border {
+    margin: 30px 0 0 0;
+  }
   &__card {
     position: relative;
     max-width: 1512px;
@@ -69,9 +72,53 @@
     bottom: 0;
   }
   padding: 0 10px;
+  &__social {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+    align-items: center;
+    margin: 20px 0 0 0;
+  }
+  &__icon-button {
+    margin: 0 auto;
+  }
 }
 
 .error-general {
   margin-bottom: 20px;
   color: red;
+}
+
+.auth-border {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  &__text {
+    white-space: nowrap;
+    font-family: "Poppins";
+    font-style: normal;
+    margin: 0;
+    font-weight: 500;
+    font-size: 19px;
+    padding: 0px 20px;
+    color: #ffffff;
+    text-align: center;
+  }
+  &__line {
+    width: 100%;
+    background: white;
+    height: 2px;
+  }
+}
+
+.icon-button {
+  border: none;
+  background-color: white;
+  border-radius: 10px;
+  padding: 7px;
+  cursor: pointer;
+  &__icon {
+    width: 30px;
+    height: 30px;
+  }
 }

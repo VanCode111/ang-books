@@ -95,4 +95,12 @@ export class AuthComponent implements OnInit, OnDestroy {
     this.parentForm.patchValue({});
     this.parentForm.reset();
   }
+
+  signInGoogle() {
+    this.authService.signInViaGoogle().subscribe({
+      next: () => {
+        this.router.navigate(['book']);
+      },
+    });
+  }
 }
