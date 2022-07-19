@@ -1,3 +1,4 @@
+import { AccessGuard } from './access.guard';
 import { ChartComponent } from './chart/chart.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { NgModule } from '@angular/core';
@@ -18,10 +19,13 @@ const routes: Routes = [
   {
     path: 'book',
     children: [...bookRoutes],
+
     ...canActivate(() => redirectUnauthorizedTo(['auth/signin'])),
   },
   {
     path: 'chart',
+    data: { token: '2720-4044-4713-0021' },
+    canActivate: [AccessGuard],
     component: ChartComponent,
   },
   {
